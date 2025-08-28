@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InsurAI - Smart Insurance Platform</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f9ff; color: #333; }
+    header { background: #004aad; color: white; padding: 20px; text-align: center; }
+    nav { display: flex; justify-content: center; background: #00367a; flex-wrap: wrap; }
+    nav a { color: white; text-decoration: none; padding: 14px 20px; display: none; cursor: pointer; }
+    nav a:hover { background: #005fcc; }
+    nav a#homeLink, nav a#agentsLink, nav a#accountLink { display: block; }
+    section { display: none; padding: 40px; min-height: 70vh; }
+    section.active { display: block; }
+    .card-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+    .card { background: white; padding: 20px; width: 320px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: left; }
+    .card h3 { color: #004aad; }
+    .btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #004aad; color: white; border: none; border-radius: 6px; text-decoration: none; cursor: pointer; }
+    .btn:hover { background: #00367a; }
+    .form-box { width: 500px; margin: 30px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .form-box h2, .form-box h3 { text-align: center; color: #004aad; }
+    .form-box input, .form-box select, .form-box textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; }
+    .form-box button { width: 100%; padding: 12px; background: #004aad; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .form-box button:hover { background: #00367a; }
+    .tab-buttons { display: flex; justify-content: center; margin-bottom: 15px; }
+    .tab-buttons button { flex: 1; padding: 10px; border: none; cursor: pointer; font-weight: bold; }
+    .tab-buttons button.active { background: #004aad; color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    footer { background: #004aad; color: white; text-align: center; padding: 15px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>InsurAI - Smart Insurance Management Platform</h1>
+  </header>
+
+  <nav>
+    <a id="homeLink" onclick="showSection('home')">Home</a>
+    <a id="agentsLink" onclick="showSection('agents')">Agents</a>
+    <a id="accountLink" onclick="showSection('account')">Account</a>
+    <a id="applyLink" onclick="showSection('apply')">Apply Insurance</a>
+    <a id="profileLink" onclick="showSection('profile')">Profile</a>
+    <a id="claimsLink" onclick="showSection('claims')">Claim Insurance</a>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="active">
+    <h2>Available Insurance Policies</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Family Health Plan</h3>
+        <p><strong>Coverage:</strong> ₹10,00,000</p>
+        <p><strong>Eligibility:</strong> Entire family, age 18–65</p>
+        <p>✔ Maternity, daycare, ambulance expenses</p>
+        <p>✔ Free annual health checkup</p>
+        <p>✔ Cashless treatment at 5000+ hospitals</p>
+      </div>
+      <div class="card">
+        <h3>Senior Citizen Health Plan</h3>
+        <p><strong>Coverage:</strong> ₹5,00,000</p>
+        <p><strong>Eligibility:</strong> Age 60+</p>
+        <p>✔ Critical illness cover</p>
+        <p>✔ Home healthcare support</p>
+        <p>✔ No pre-medical checkup required</p>
+      </div>
+      <div class="card">
+        <h3>Comprehensive Motor Insurance</h3>
+        <p><strong>Coverage:</strong> ₹8,00,000</p>
+        <p><strong>Eligibility:</strong> Vehicle owners (Private/Commercial)</p>
+        <p>✔ Accidents, theft, fire, natural disasters</p>
+        <p>✔ Roadside assistance included</p>
+        <p>✔ Zero depreciation cover option</p>
+      </div>
+      <div class="card">
+        <h3>Term Life Secure</h3>
+        <p><strong>Coverage:</strong> ₹1 Crore</p>
+        <p><strong>Eligibility:</strong> Age 18–60</p>
+        <p>✔ High life cover at low premium</p>
+        <p>✔ Accidental & critical illness riders</p>
+        <p>✔ Tax benefits under section 80C</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agents -->
+  <section id="agents">
+    <h2>Our Agents</h2>
+    <div class="card-container">
+      <div class="card"><h3>Ravi Kumar</h3><p>Specialist in Health & Term Insurance.</p></div>
+      <div class="card"><h3>Priya Sharma</h3><p>Expert in Motor Insurance.</p></div>
+      <div class="card"><h3>John Mathew</h3><p>Life Insurance expert with 10+ years experience.</p></div>
+    </div>
+  </section>
+
+  <!-- Account -->
+  <section id="account">
+    <div class="form-box">
+      <div class="tab-buttons">
+        <button class="active" onclick="switchTab('loginTab', event)">Login</button>
+        <button onclick="switchTab('signupTab', event)">Sign Up</button>
+      </div>
+      <div id="loginTab" class="tab-content active">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="text" id="loginUsername" placeholder="Username" required>
+          <input type="text" id="loginPhone" placeholder="Phone Number" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <div id="signupTab" class="tab-content">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+          <input type="text" id="signupName" placeholder="Full Name" required>
+          <input type="email" id="signupEmail" placeholder="Email" required>
+          <input type="text" id="signupPhone" placeholder="Phone Number" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply Insurance -->
+  <section id="apply">
+    <div class="form-box">
+      <h2>Apply for Insurance</h2>
+      <label>Select Insurance Type:</label>
+      <select id="insuranceType" onchange="showApplyForm()">
+        <option value="">-- Choose --</option>
+        <option value="Family Health Plan">Health Insurance</option>
+        <option value="Senior Citizen Health Plan">Senior Citizen Health</option>
+        <option value="Comprehensive Motor Insurance">Motor Insurance</option>
+        <option value="Term Life Secure">Term Life</option>
+      </select>
+      <div id="applyForm"></div>
+    </div>
+  </section>
+
+  <!-- Profile -->
+  <section id="profile">
+    <h2>My Profile</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>👤 Personal Details</h3>
+        <p><strong>Name:</strong> <span id="profileName">User</span></p>
+        <p><strong>Email:</strong> <span id="profileEmail">N/A</span></p>
+        <p><strong>Phone:</strong> <span id="profilePhone">N/A</span></p>
+      </div>
+      <div class="card">
+        <h3>📑 My Insurance Applications</h3>
+        <ul id="appliedInsurances"><li><em>No insurance applied yet.</em></li></ul>
+      </div>
+      <div class="card">
+        <h3>💰 Claim History</h3>
+        <ul id="claimHistory"><li><em>No claims yet.</em></li></ul>
+      </div>
+    </div>
+    <button onclick="logout()">Logout</button>
+  </section>
+
+  <!-- Claim Insurance -->
+  <section id="claims">
+    <h2>Claim Insurance</h2>
+    <div class="form-box">
+      <form id="claimForm">
+        <label>Policy Number:</label><input type="text" required>
+        <label>Claim Type:</label>
+        <select required>
+          <option value="Health">Health</option>
+          <option value="Senior Citizen Health">Senior Health</option>
+          <option value="Life">Life</option>
+          <option value="Motor">Motor</option>
+        </select>
+        <label>Description:</label><textarea rows="4" required></textarea>
+        <label>Upload Documents (Photo/Proof):</label>
+        <input type="file" id="claimFile" accept=".jpg,.jpeg,.png,.pdf" required>
+        <button type="submit">Submit Claim</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 InsurAI. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Section Switch
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    // Tab Switch
+    function switchTab(tabId, event) {
+      document.querySelectorAll(".tab-buttons button").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+      event.target.classList.add("active");
+    }
+
+    // Show Success
+    function showSuccessMessage(form) {
+      const message = document.createElement("p");
+      message.innerText = "✅ Submitted Successfully!";
+      message.style.color = "green";
+      message.style.fontWeight = "bold";
+      message.style.textAlign = "center";
+      form.appendChild(message);
+      setTimeout(() => message.remove(), 3000);
+    }
+
+    // Apply Insurance Form
+    function showApplyForm() {
+      const type = document.getElementById("insuranceType").value;
+      const form = document.getElementById("applyForm");
+      if (!type) { form.innerHTML = ""; return; }
+
+      form.innerHTML = `
+        <form id="applyInsuranceForm">
+          <h3>Insurance Application</h3>
+          <p><strong>Selected Plan:</strong> ${type}</p>
+          <label>Full Name:</label><input type="text" required>
+          <label>Age:</label><input type="number" required>
+          <label>Address:</label><textarea required></textarea>
+          <label>Contact:</label><input type="text" required>
+          <button type="submit">Apply</button>
+        </form>`;
+      
+      document.getElementById("applyInsuranceForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        showSuccessMessage(form);
+        const insuranceList = document.getElementById("appliedInsurances");
+        if (insuranceList.querySelector("em")) insuranceList.innerHTML = "";
+        insuranceList.innerHTML += `<li>${type}</li>`;
+        this.reset();
+      });
+    }
+
+    // Claim Form
+    document.getElementById("claimForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const type = this.querySelector("select").value;
+      const fileInput = document.getElementById("claimFile");
+      if (fileInput.files.length === 0) {
+        alert("Please upload documents!");
+        return;
+      }
+      showSuccessMessage(this);
+      const claimList = document.getElementById("claimHistory");
+      if (claimList.querySelector("em")) claimList.innerHTML = "";
+      claimList.innerHTML += `<li>${type} Claim Submitted</li>`;
+      this.reset();
+    });
+
+    // Login
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const username = document.getElementById("loginUsername").value;
+      const phone = document.getElementById("loginPhone").value;
+      document.getElementById("profileName").innerText = username;
+      document.getElementById("profilePhone").innerText = phone;
+      document.getElementById("profileLink").style.display = "block";
+      document.getElementById("applyLink").style.display = "block";
+      document.getElementById("claimsLink").style.display = "block";
+      showSection("profile");
+    });
+
+    // Signup
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("signupName").value;
+      const email = document.getElementById("signupEmail").value;
+      const phone = document.getElementById("signupPhone").value;
+      document.getElementById("profileName").innerText = name;
+      document.getElementById("profileEmail").innerText = email;
+      document.getElementById("profilePhone").innerText = phone;
+      document.getElementById("profileLink").style.display = "block";
+      document.getElementById("applyLink").style.display = "block";
+      document.getElementById("claimsLink").style.display = "block";
+      showSection("profile");
+    });
+
+    // Logout
+    function logout() {
+      document.getElementById("profileLink").style.display = "none";
+      document.getElementById("applyLink").style.display = "none";
+      document.getElementById("claimsLink").style.display = "none";
+      document.getElementById("appliedInsurances").innerHTML = "<li><em>No insurance applied yet.</em></li>";
+      document.getElementById("claimHistory").innerHTML = "<li><em>No claims yet.</em></li>";
+      showSection("home");
+      alert("You have been logged out.");
+    }
+  </script>
+</body>
+</html>
