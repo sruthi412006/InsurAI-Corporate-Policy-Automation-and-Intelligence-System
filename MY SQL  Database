@@ -1,0 +1,42 @@
+CREATE DATABASE insurai;
+USE insurai;
+
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20) UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE policies (
+    policy_id INT AUTO_INCREMENT PRIMARY KEY,
+    policy_name VARCHAR(100) NOT NULL,
+    coverage_amount DECIMAL(12,2),
+    eligibility VARCHAR(100),
+    description TEXT
+);
+
+CREATE TABLE applications (
+    application_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    policy_id INT,
+    status ENUM('Pending','Approved','Rejected') DEFAULT 'Pending',
+    applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (policy_id) REFERENCES policies(policy_id)
+);
+
+CREATE TABLE claims (
+    claim_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    policy_id INT,
+    claim_type VARCHAR(50),
+    description TEXT,
+    document_path VARCHAR(255),
+    status ENUM('Submitted','In Review','Approved','Rejected') DEFAULT 'Submitted',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (policy_id) REFERENCES policies(policy_id)
+);
